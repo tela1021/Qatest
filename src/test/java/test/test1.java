@@ -22,7 +22,7 @@ public class test1 {
             options.addArguments("--no sandbox");
 
             WebDriver driver = new ChromeDriver(options);
-            driver.get("http://www.google.com");
+            driver.get("http://www.google.de");
 
         }
     }
