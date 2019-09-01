@@ -11,7 +11,7 @@ public class Domawka {
         Scanner in = new Scanner(System.in);
         char Letter;
         Letter = in.next().charAt(0);
-        int count = 1;
+        int count = 0;
         for (char element : line.toCharArray()) {
             if (element == Letter) count++;
         }
