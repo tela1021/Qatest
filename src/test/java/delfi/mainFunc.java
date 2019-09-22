@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class mainFunc {
-    WebDriver driver = new ChromeDriver();
-    variables myVar = new variables();
+    private WebDriver driver = new ChromeDriver();
+    private variables myVar = new variables();
 
     @Before
     public void setup() {
@@ -18,7 +18,7 @@ public class mainFunc {
         driver.get(myVar.BASE_URL);
     }
 
-    public void getPageElements() {
+    void getPageElements() {
 
         myVar.firstArticle = driver.findElement(myVar.HOME_PAGE_TITLE).getText();
         String firstArticleCommentCount = driver.findElement(myVar.HOME_PAGE_COMMENT_COUNT).getText();
@@ -32,7 +32,7 @@ public class mainFunc {
         System.out.println(""); // пустая строка для разделения
     }
 
-    public void goToFirstArticle() {
+    void goToFirstArticle() {
         driver.findElement(myVar.HOME_PAGE_TITLE).click();
         myVar.pageArticleTitle = driver.findElement(myVar.ARTICLE_PAGE_TITLE).getText();
         String pageArticleCommentsCount = driver.findElement(myVar.ARTICLE_PAGE_COMMENT_COUNT).getText();
@@ -45,12 +45,12 @@ public class mainFunc {
         System.out.println("Число комментариев как строка: " + myVar.pageArticleCommentsCountNum);
     }
 
-    public void articlesTitleAssertion() {
+    void articlesTitleAssertion() {
 
         Assert.assertEquals(myVar.firstArticle, myVar.pageArticleTitle);
     }
 
-    public void commentsCountAssertion() {
+    void commentsCountAssertion() {
         Assert.assertEquals(myVar.firstArticleCommentCountNum, myVar.pageArticleCommentsCountNum);
     }
 

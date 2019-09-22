@@ -1,5 +1,4 @@
 package delfi;
-
 import org.junit.Test;
 
 public class delfiTest extends mainFunc {
