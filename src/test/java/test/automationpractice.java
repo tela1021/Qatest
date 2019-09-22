@@ -1,6 +1,7 @@
 package test;
 
 import com.codeborne.selenide.junit.ScreenShooter;
+import io.qameta.allure.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.List;
-
+@Epic("OpenSite")
+@Feature("Просто какой-то текст")
 
 public class automationpractice {
 
@@ -22,24 +24,31 @@ public class automationpractice {
     public ScreenShooter takeScreenshotSelenide = ScreenShooter.failedTests().succeededTests();
 
     @Test
-    public void openSite() {
+
+    @Story("User tries to login the system with invalid username and invalid password.")
+    @Description("Invalid Login Test with Invalid Username and Invalid Password.")
+
+    public void Settings() {
+
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
-
-
         ChromeOptions options = new ChromeOptions();
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+
+
         driver.get("http://automationpractice.com/");
         driver.findElement(By.linkText("WOMEN")).click();
 
+
         WebElement filter = driver.findElement(By.xpath("//ul[@class='tree dynamized']"));
         List<WebElement> li_Filter = filter.findElements(By.tagName("li"));
-        li_Filter.remove(" ");
+       // li_Filter.remove(" ");
                 /*
         for(WebElement element_fi : li_Filter){
             System.out.println(element_fi.getText().toLowerCase());
         }
 */
+
         WebElement body = driver.findElement(By.xpath("//ul[@class='clearfix']"));
         List<WebElement> li_Body = body.findElements(By.tagName("li"));
         /*

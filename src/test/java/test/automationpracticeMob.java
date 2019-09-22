@@ -30,7 +30,7 @@ public class automationpracticeMob {
       //  DesiredCapabilities cap = DesiredCapabilities.chrome();
       //  cap.setCapability(ChromeOptions.CAPABILITY, options);
         WebDriver driver = new ChromeDriver();
-       driver.manage().window().setSize(new Dimension(414,736));
+        driver.manage().window().setSize(new Dimension(414,736));
 
 
         driver.get("http://automationpractice.com/");
