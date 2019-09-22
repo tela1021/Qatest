@@ -1,61 +1,51 @@
-package test;
+package webSite;
 
 import com.codeborne.selenide.junit.ScreenShooter;
-import io.qameta.allure.*;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.Rule;
+import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.List;
-@Epic("OpenSite")
-@Feature("Просто какой-то текст")
 
-public class automationpractice {
+
+public class automationpracticeMob {
 
     @Rule
     public ScreenShooter takeScreenshotSelenide = ScreenShooter.failedTests().succeededTests();
 
     @Test
-
-    @Story("User tries to login the system with invalid username and invalid password.")
-    @Description("Invalid Login Test with Invalid Username and Invalid Password.")
-
-    public void Settings() {
-
+    public void openSite() {
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+
+
         ChromeOptions options = new ChromeOptions();
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+      //  options.addArguments("window-size=414,736");
+      //  DesiredCapabilities cap = DesiredCapabilities.chrome();
+      //  cap.setCapability(ChromeOptions.CAPABILITY, options);
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().setSize(new Dimension(414,736));
 
 
         driver.get("http://automationpractice.com/");
-        driver.findElement(By.linkText("WOMEN")).click();
+        driver.findElement(By.className("cat-title")).click();
+        driver.findElement(By.xpath("//a[@href='http://automationpractice.com/index.php?id_category=3&controller=category']")).click();
+        driver.findElement(By.id("categories_block_left")).click();
 
 
         WebElement filter = driver.findElement(By.xpath("//ul[@class='tree dynamized']"));
         List<WebElement> li_Filter = filter.findElements(By.tagName("li"));
-       // li_Filter.remove(" ");
-                /*
-        for(WebElement element_fi : li_Filter){
-            System.out.println(element_fi.getText().toLowerCase());
-        }
-*/
+
 
         WebElement body = driver.findElement(By.xpath("//ul[@class='clearfix']"));
         List<WebElement> li_Body = body.findElements(By.tagName("li"));
-        /*
-        for(WebElement element : li_Body){
-            System.out.println(element.getText().toLowerCase());
-        }
-*/
+
 
         String li_Fliter_el_0 = li_Filter.get(0).getText().toLowerCase();
         String li_Fliter_el_1 = li_Filter.get(3).getText().toLowerCase();
@@ -68,9 +58,8 @@ public class automationpractice {
         Assert.assertEquals(li_Filter.get(0).getText().toLowerCase(), li_Body.get(0).getText().toLowerCase());
         Assert.assertEquals(li_Filter.get(3).getText().toLowerCase(), li_Body.get(1).getText().toLowerCase());
 
-
-
         driver.close();
+
     }
 }
 
